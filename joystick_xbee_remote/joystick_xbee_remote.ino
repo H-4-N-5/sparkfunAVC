@@ -1,8 +1,8 @@
 #include <SoftwareSerial.h>
 
-#include <XBee.h>
 
 
+/*
 // Store the Arduino pin associated with each input
 const byte PIN_BUTTON_SELECT = 2; // Select button is triggered when joystick is pressed
 
@@ -10,6 +10,7 @@ const byte PIN_BUTTON_RIGHT = 3;
 const byte PIN_BUTTON_UP = 4;
 const byte PIN_BUTTON_DOWN = 5;
 const byte PIN_BUTTON_LEFT = 6;
+*/
 
 const byte PIN_ANALOG_X = 0;
 const byte PIN_ANALOG_Y = 1;
@@ -23,6 +24,7 @@ void setup() {
   
   //    * HIGH = the button is not pressed
   //    * LOW = the button is pressed  
+  /*
   pinMode(PIN_BUTTON_RIGHT, INPUT);  
   digitalWrite(PIN_BUTTON_RIGHT, HIGH);
   
@@ -37,39 +39,44 @@ void setup() {
   
   pinMode(PIN_BUTTON_SELECT, INPUT);  
   digitalWrite(PIN_BUTTON_SELECT, HIGH);  
+  */
 }
 
 
 void loop() {
-  // Print the current values of the inputs (joystick and
-  // buttons) to the console.
+  /*
   if (digitalRead(PIN_BUTTON_LEFT) == 0) {
-    Serial.print("left button pressed");
-    Serial.println();
+    Serial.println("left button pressed");
   }
   if (digitalRead(PIN_BUTTON_RIGHT) == 0) {
-    Serial.print("right button pressed");
-    Serial.println();
+    Serial.println("right button pressed");
   }
   if (digitalRead(PIN_BUTTON_UP) == 0) {
-    Serial.print("up button pressed");
-    Serial.println();
+    Serial.println("up button pressed");
   }
   if (digitalRead(PIN_BUTTON_DOWN) == 0) {
     Serial.print("down button pressed");
-    Serial.println();
   }
-  if ((analogRead(PIN_ANALOG_X) < 500) || (analogRead(PIN_ANALOG_X) > 550)) {
-    Serial.print(analogRead(PIN_ANALOG_X));
-    Serial.println();
-  }
+  */
+  
+  
+  //if ((analogRead(PIN_ANALOG_X) < 500) || (analogRead(PIN_ANALOG_X) > 550)) {
+    int joystickX = map(analogRead(PIN_ANALOG_X), 0, 1024, 0, 90);
+    Serial.println(joystickX);
+    //if(XBee.available()) {
+      XBee.write(joystickX);
+    //} else {
+    //  Serial.println("XBee not available");
+    //}
+    
+  //}
+  /*
   if ((analogRead(PIN_ANALOG_Y) < 500) || (analogRead(PIN_ANALOG_Y) > 550)) {
-    Serial.print(analogRead(PIN_ANALOG_Y));
-    Serial.println();
+    int joystickY = map(analogRead(PIN_ANALOG_Y), 0, 1024, 0, 90);
+    Serial.println(joystickY);
   }
   if (digitalRead(PIN_BUTTON_SELECT) == 0) {
-    Serial.print("joystick button pressed");
-    Serial.println();
+    Serial.println("joystick button pressed");
   }
   
   if (Serial.available())
@@ -80,5 +87,6 @@ void loop() {
   { // If data comes in from XBee, send it out to serial monitor
     Serial.write(XBee.read());
   }
+  */
 }
 
