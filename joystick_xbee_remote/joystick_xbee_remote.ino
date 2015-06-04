@@ -71,7 +71,6 @@ void loop() {
     Serial.print("joystick button pressed");
     Serial.println();
   }
-  delay(20);
   
   if (Serial.available())
   { // If data comes in from serial monitor, send it out to XBee
