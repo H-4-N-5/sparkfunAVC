@@ -1,0 +1,7 @@
+//							//
+//  BeagleBone Black Notes	//
+//							//
+
+default username:password is [debian:temppwd]
+
+to ssh in Terminal type: ssh 192.168.7.2 -l root
